@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:id="@+id/scrollView"
     android:padding="12dp"
-    tools:context=".MainActivity">
+    android:scrollbars="vertical"
+    tools:context=".MainActivity"
+    android:background="#cdb4b4">
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,6 +28,14 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#1b4972"
+            android:background="#d3e4e5"
+            android:id="@+id/result"
+            android:textSize="28sp"
+            android:textStyle="bold|italic" />
 
         <ImageView
             android:layout_width="179dp"
@@ -54,26 +65,50 @@
             android:id="@+id/coursesLayout"
             android:orientation="horizontal">
         <EditText
+            android:id="@+id/firstCH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:hint="Credit Hours"/>
 
-            <EditText
+            <Spinner
+                android:id="@+id/optionsSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:hint="Grade"/>
+                android:layout_weight="6"/>
         </LinearLayout>
 
         <Button
             android:id="@+id/addCourse"
-            android:layout_width="wrap_content"
+            android:layout_width="53dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="+"/>
+            android:textColorHighlight="#c6d5de"
+            android:background="@drawable/rounded_button"
+            android:text="+"
+            android:textSize="15sp"/>
+
+        <Button
+            android:id="@+id/removeCourse"
+            android:layout_width="53dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/rounded_button"
+            android:text="-"
+            android:textColorHighlight="#c6d5de"
+            android:textSize="24sp"/>
+
+        <Button
+            android:id="@+id/calculate"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#525c36"
+            android:textStyle="bold|italic"
+            android:textSize="20sp"
+            android:text="Calculate" />
 
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
