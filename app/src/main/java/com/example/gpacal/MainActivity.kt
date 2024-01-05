@@ -1,6 +1,9 @@
 package com.example.gpacal
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,6 +17,7 @@ import android.widget.ScrollView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -23,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private var layoutList: Stack<LinearLayout> = Stack()
     private var hoursList: MutableList<EditText> = mutableListOf()
     private var gradeList: MutableList<Spinner> = mutableListOf()
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +52,9 @@ class MainActivity : AppCompatActivity() {
 
         calculate.setOnClickListener {
 
-                val ans: Double? = generateResult()
+            val ans: Double? = generateResult()
 
-            if(ans!=null) {
+            if (ans != null) {
                 result.text = "Your GPA is: $ans"
             }
         }
@@ -58,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         gradeList.add(optionsSpinner)
         onSelectedItem(optionsSpinner)
     }
+
     private fun addNewDetails() {
 
         val addCourse: Button = findViewById(R.id.addCourse)
@@ -76,8 +82,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         newLinearLayout.orientation = LinearLayout.HORIZONTAL
-            val newCHText = EditText(this)
-            newCHText.hint = "Credit Hours"
+        val newCHText = EditText(this)
+        newCHText.hint = "Credit Hours"
 
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -117,8 +123,8 @@ class MainActivity : AppCompatActivity() {
 
     fun removeDetails() {
         mainLayout.removeView(layoutList.pop())
-        gradeList.removeAt(gradeList.size-1)
-        hoursList.removeAt(hoursList.size-1)
+        gradeList.removeAt(gradeList.size - 1)
+        hoursList.removeAt(hoursList.size - 1)
     }
 
     fun onSelectedItem(spinner: Spinner): String {
@@ -153,9 +159,9 @@ class MainActivity : AppCompatActivity() {
         var sumOfCH: Double = 0.0
         // since the size is going to be equal
 
-        for(i in 0 until gradeList.size) {
+        for (i in 0 until gradeList.size) {
             val selectedGrade: String = gradeList[i].selectedItem.toString()
-            val points: Double = when(selectedGrade){
+            val points: Double = when (selectedGrade) {
                 "A+" -> 4.0
                 "A" -> 3.5
                 "B+" -> 3.0
@@ -165,17 +171,19 @@ class MainActivity : AppCompatActivity() {
                 "C-" -> 1.0
                 else -> 0.0
             }
-            if(hoursList[i].text.toString().toIntOrNull() == null || hoursList[i].text.toString().isEmpty()) {
+            if (hoursList[i].text.toString().toIntOrNull() == null || hoursList[i].text.toString()
+                    .isEmpty()
+            ) {
                 Toast.makeText(this, "Please enter all values properly!", Toast.LENGTH_SHORT).show()
                 return null
             }
-                val creditHours: Int = (hoursList[i].text.toString()).toInt()
-                sumOfQP += points * creditHours
-                sumOfCH += creditHours
+            val creditHours: Int = (hoursList[i].text.toString()).toInt()
+            sumOfQP += points * creditHours
+            sumOfCH += creditHours
 
         }
 
-        val originalValue: Double = sumOfQP/sumOfCH
+        val originalValue: Double = sumOfQP / sumOfCH
         val decimalPlaces: Int = 2
 
         val roundedValue: Double = BigDecimal(originalValue)
@@ -185,4 +193,8 @@ class MainActivity : AppCompatActivity() {
         return roundedValue
     }
 }
+
+
+
+
 
