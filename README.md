@@ -5,3 +5,7 @@ Im not much good with UI design so this very first project I made in android stu
 I changed the system design for both dark and light theme to the ligher theme as the colors become a bit blurry in the dark mode.
 
 I used linear layout for this as this was the only layout i learned about in the start. Made use of alot of Views like spinner, EditTexts, Buttons etc. 
+
+## Output:
+![Screenshot (65)](https://github.com/sarwataijaz/GPA-Calculator/assets/124436066/38951200-f3a6-438e-83a0-6aebc3eb9e3d)
+
