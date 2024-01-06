@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.DialogInterface
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,9 +15,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.Space
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.DialogFragment
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -49,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         val calculate: Button = findViewById(R.id.calculate)
 
         val firstCH: EditText = findViewById(R.id.firstCH)
+        val scrollView: NestedScrollView = findViewById(R.id.scrollView)
 
         calculate.setOnClickListener {
 
@@ -56,6 +60,9 @@ class MainActivity : AppCompatActivity() {
 
             if (ans != null) {
                 result.text = "Your GPA is: $ans"
+                scrollView.post {
+                        scrollView.smoothScrollTo(0,0)
+                }
             }
         }
         val optionsSpinner: Spinner = findViewById(R.id.optionsSpinner)
@@ -68,6 +75,9 @@ class MainActivity : AppCompatActivity() {
 
         val addCourse: Button = findViewById(R.id.addCourse)
         (addCourse.parent as? ViewGroup)?.removeView(addCourse)
+
+        val space: Space = findViewById(R.id.space)
+        (space.parent as? ViewGroup)?.removeView(space)
 
         val removeCourse: Button = findViewById(R.id.removeCourse)
         (removeCourse.parent as? ViewGroup)?.removeView(removeCourse)
@@ -115,6 +125,7 @@ class MainActivity : AppCompatActivity() {
 
         mainLayout.addView(newLinearLayout)
         mainLayout.addView(addCourse)
+        mainLayout.addView(space)
         mainLayout.addView(removeCourse)
         mainLayout.addView(calculate)
 
@@ -127,7 +138,7 @@ class MainActivity : AppCompatActivity() {
         hoursList.removeAt(hoursList.size - 1)
     }
 
-    fun onSelectedItem(spinner: Spinner): String {
+    fun onSelectedItem(spinner: Spinner) {
 
         val options = arrayOf("A+", "A", "B+", "B", "C", "C+", "C-", "F")
 
@@ -135,7 +146,6 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spinner.adapter = adapter
-        var text: String = ""
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -144,14 +154,14 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                text = options[position]
+
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 // Do nothing here
             }
         }
-        return text
+
     }
 
     fun generateResult(): Double? {

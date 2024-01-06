@@ -13,31 +13,31 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/mainLayout"
         android:background="@drawable/greyy"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="359dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="149dp"
+            android:fontFamily="@font/days"
             android:padding="16dp"
             android:text="GPA CALCULATOR"
             android:textAlignment="center"
             android:textColor="#800080"
             android:textSize="60sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/sunmory"/>
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#1b4972"
             android:id="@+id/result"
-            android:textSize="35sp"
-            android:fontFamily="@font/days"
-            android:textStyle="bold|italic" />
+            android:textSize="55sp"
+            android:fontFamily="@font/sunlight"
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="179dp"
@@ -49,17 +49,18 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="36dp" />
+            android:layout_height="25dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFDDDD"
+            android:background="#C0C0C0"
             android:text="Enter the values: "
             android:textAlignment="center"
-            android:textColor="#800000"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
+            android:fontFamily="@font/summer"
+            android:textColor="#00008B"
+            android:textSize="44sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,6 +78,7 @@
                 android:id="@+id/optionsSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:layout_weight="6"/>
         </LinearLayout>
 
@@ -88,10 +90,11 @@
             android:textColorHighlight="#c6d5de"
             android:background="@drawable/rounded_button"
             android:text="+"
-            android:textSize="15sp"/>
+            android:textSize="24sp"/>
 
         <Space
             android:layout_width="match_parent"
+            android:id="@+id/space"
             android:layout_height="15dp" />
 
         <Button
@@ -101,18 +104,17 @@
             android:layout_gravity="right"
             android:background="@drawable/rounded_button"
             android:text="-"
-            android:textColorHighlight="#c6d5de"
-            android:textSize="24sp"/>
+            android:textSize="34sp"/>
 
         <Button
             android:id="@+id/calculate"
             android:layout_width="174dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="#525c36"
             android:textStyle="bold|italic"
             android:textSize="20sp"
             android:text="Calculate" />
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
