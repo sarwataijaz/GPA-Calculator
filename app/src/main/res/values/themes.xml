@@ -3,10 +3,8 @@
     <style name="Base.Theme.GPACal" parent="Theme.AppCompat.Light">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">#FF4081</item>
-        <item name="colorPrimaryDark">#E91E63</item>
-        <item name="colorAccent">#FFC107</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="colorPrimary">#C0C0C0</item>
+        <item name="colorPrimaryDark">#C0C0C0</item>
     </style>
 
     <style name="Theme.GPACal" parent="Base.Theme.GPACal" />

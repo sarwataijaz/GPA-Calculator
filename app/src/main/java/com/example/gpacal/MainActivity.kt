@@ -3,6 +3,7 @@ package com.example.gpacal
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ import android.widget.Space
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.DialogFragment
 import java.math.BigDecimal
@@ -143,8 +145,6 @@ class MainActivity : AppCompatActivity() {
         val options = arrayOf("A+", "A", "B+", "B", "C", "C+", "C-", "F")
 
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, options)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         spinner.adapter = adapter
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -203,6 +203,9 @@ class MainActivity : AppCompatActivity() {
         return roundedValue
     }
 }
+
+
+
 
 
 
