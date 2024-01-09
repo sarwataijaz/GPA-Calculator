@@ -19,16 +19,11 @@
         android:background="@drawable/greyy"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="149dp"
-            android:fontFamily="@font/days"
-            android:padding="16dp"
-            android:text="GPA CALCULATOR"
-            android:textAlignment="center"
-            android:textColor="#800080"
-            android:textSize="60sp"
-            android:textStyle="bold" />
+        <ImageView
+            android:src="@drawable/ss"
+            android:layout_width="match_parent"
+            android:layout_height="wra"
+            android:gravity="center" />
 
         <TextView
             android:layout_width="match_parent"
@@ -67,7 +62,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/coursesLayout"
             android:orientation="horizontal">
-        <EditText
+
+            <EditText
             android:id="@+id/firstCH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,13 +1,9 @@
 package com.example.gpacal
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
-import android.app.Dialog
-import android.content.Context
-import android.content.DialogInterface
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -15,14 +11,11 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.ScrollView
 import android.widget.Space
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.DialogFragment
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -45,15 +38,21 @@ class MainActivity : AppCompatActivity() {
             addNewDetails()
         }
 
+        val firstCH: EditText = findViewById(R.id.firstCH)
+        val optionsSpinner: Spinner = findViewById(R.id.optionsSpinner)
+
+        hoursList.add(firstCH)
+        gradeList.add(optionsSpinner)
+
         val removeCourse: Button = findViewById(R.id.removeCourse)
+        removeCourse.isEnabled = false
         removeCourse.setOnClickListener {
-            removeDetails()
+                removeDetails()
         }
 
         val result: TextView = findViewById(R.id.result)
         val calculate: Button = findViewById(R.id.calculate)
 
-        val firstCH: EditText = findViewById(R.id.firstCH)
         val scrollView: NestedScrollView = findViewById(R.id.scrollView)
 
         calculate.setOnClickListener {
@@ -63,13 +62,11 @@ class MainActivity : AppCompatActivity() {
             if (ans != null) {
                 result.text = "Your GPA is: $ans"
                 scrollView.post {
-                        scrollView.smoothScrollTo(0,0)
+                        scrollView.smoothScrollTo(0,0) // take to the top of screen
                 }
             }
         }
-        val optionsSpinner: Spinner = findViewById(R.id.optionsSpinner)
-        hoursList.add(firstCH)
-        gradeList.add(optionsSpinner)
+
         onSelectedItem(optionsSpinner)
     }
 
@@ -94,8 +91,10 @@ class MainActivity : AppCompatActivity() {
         )
 
         newLinearLayout.orientation = LinearLayout.HORIZONTAL
+
         val newCHText = EditText(this)
         newCHText.hint = "Credit Hours"
+
 
         val layoutParams = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -124,6 +123,7 @@ class MainActivity : AppCompatActivity() {
         newLinearLayout.addView(newGradeText)
 
         layoutList.push(newLinearLayout)
+        removeCourse.isEnabled = true
 
         mainLayout.addView(newLinearLayout)
         mainLayout.addView(addCourse)
@@ -135,6 +135,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun removeDetails() {
+        val removeCourse: Button = findViewById(R.id.removeCourse)
+        if (hoursList.size == 1 && gradeList.size == 1) {
+            removeCourse.isEnabled = false
+        } else {
+            removeCourse.isEnabled = true
+        }
         mainLayout.removeView(layoutList.pop())
         gradeList.removeAt(gradeList.size - 1)
         hoursList.removeAt(hoursList.size - 1)
