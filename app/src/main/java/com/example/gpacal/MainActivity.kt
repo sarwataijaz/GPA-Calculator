@@ -3,7 +3,6 @@ package com.example.gpacal
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -103,6 +102,7 @@ class MainActivity : AppCompatActivity() {
         layoutParams.weight = 3.0f
 
         newCHText.layoutParams = layoutParams
+        newCHText.inputType =  android.text.InputType.TYPE_CLASS_NUMBER
 
         val newGradeText = Spinner(this)
 
@@ -134,19 +134,15 @@ class MainActivity : AppCompatActivity() {
         mainLayout.requestLayout()
     }
 
-    fun removeDetails() {
+    private fun removeDetails() {
         val removeCourse: Button = findViewById(R.id.removeCourse)
-        if (hoursList.size == 1 && gradeList.size == 1) {
-            removeCourse.isEnabled = false
-        } else {
-            removeCourse.isEnabled = true
-        }
+        removeCourse.isEnabled = !(hoursList.size == 1 && gradeList.size == 1)
         mainLayout.removeView(layoutList.pop())
         gradeList.removeAt(gradeList.size - 1)
         hoursList.removeAt(hoursList.size - 1)
     }
 
-    fun onSelectedItem(spinner: Spinner) {
+    private fun onSelectedItem(spinner: Spinner) {
 
         val options = arrayOf("A+", "A", "B+", "B", "C", "C+", "C-", "F")
 
@@ -170,7 +166,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun generateResult(): Double? {
+    private fun generateResult(): Double? {
         var sumOfQP: Double = 0.0
         var sumOfCH: Double = 0.0
         // since the size is going to be equal
@@ -202,11 +198,9 @@ class MainActivity : AppCompatActivity() {
         val originalValue: Double = sumOfQP / sumOfCH
         val decimalPlaces: Int = 2
 
-        val roundedValue: Double = BigDecimal(originalValue)
+        return BigDecimal(originalValue)
             .setScale(decimalPlaces, RoundingMode.HALF_UP)
             .toDouble()
-
-        return roundedValue
     }
 }
 
